@@ -49,7 +49,7 @@
                         }
                 ?> 
         <a class="um" href="estatisticas.php">Estatísticas <i class="fas fa-chart-bar"></i></a>&nbsp;&nbsp;
-        <a class="um" href="devs.php">Desenvolvedoress <i class="fab fa-dev"></i></a>&nbsp;&nbsp;
+        <a class="um" href="devs.php">Desenvolvedores <i class="fab fa-dev"></i></a>&nbsp;&nbsp;
        
         
         <?php
