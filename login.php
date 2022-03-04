@@ -43,8 +43,12 @@
         include "php/conexao.php";
         
         
+        $idusuario = strtolower(trim(filter_var($_SESSION['idusuario'], FILTER_SANITIZE_NUMBER_INT)));
         
-        $sql="SELECT * FROM usuarios WHERE excluido ='false' and idusuario = ".$_SESSION['idusuario'].";";
+        $sql="SELECT * FROM usuarios WHERE excluido ='false' and idusuario = :idusuario;";
+        $stmt = $conecta->prepare($sql);
+        $stmt->bindValue(':idusuario', $idusuario);
+        $stmt->execute();
         $resultado= pg_query($conecta, $sql);
         $qtde=pg_num_rows($resultado);
         $linha=pg_fetch_array($resultado);

@@ -166,7 +166,14 @@
 				
 				foreach($_SESSION['carrinho'] as $idcurso => $qtd)
 				{ 
+
+               //$sql="SELECT senha, adm, idusuario FROM usuarios WHERE excluido = 'false' and email = :email";
+               //$stmt = $conecta->prepare($sql);
+               //$stmt->bindValue(':email', $email, PDO::PARAM_STR);
+               //$stmt->execute();
+
 					$sql = "SELECT * FROM cursos WHERE idcurso=$idcurso AND	excluido = 'false' ORDER BY idcurso";
+               //$stmt = $conecta->prepare($sql);
 					$res = pg_query($conecta, $sql);
 					$regs = pg_num_rows($res);
 					if($regs>0)

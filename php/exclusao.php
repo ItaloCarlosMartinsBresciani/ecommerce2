@@ -3,11 +3,14 @@
     include "conexao.php";
 
   
-    $idusuario = $_POST['idusuario'];
+    $idusuario = strtolower(trim(filter_var($_POST['idusuario'], FILTER_SANITIZE_NUMBER_INT)));
     $data=date('d/m/Y'); 
 
-    $sql="UPDATE usuarios set excluido = 'true' WHERE idusuario = $idusuario";
-    
+    $sql="UPDATE usuarios set excluido = 'true' WHERE idusuario = :idusuario";
+
+        $stmt = $conecta->prepare($sql);
+        $stmt->bindValue(':idusuario', $idusuario);
+        $stmt->execute();
 
     $resultado=pg_query($conecta,$sql);
     $qtde=pg_affected_rows($resultado);

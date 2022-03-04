@@ -25,14 +25,21 @@
             include "php/conexao.php";
             
             
-
-            $sql="SELECT IDvenda, Datacompra, Idusuario FROM vendas WHERE idusuario = ".$_SESSION["idusuario"]."";
+            $idusuario = strtolower(trim(filter_var($_SESSION['idusuario'], FILTER_SANITIZE_NUMBER_INT)));
+            $sql="SELECT IDvenda, Datacompra, Idusuario FROM vendas WHERE idusuario = :idusuario";
+            $stmt = $conecta->prepare($sql);
+            $stmt->bindValue(':idusuario', $idusuario);
+            $stmt->execute();
             $resultado= pg_query($conecta, $sql);
             $qtde=pg_num_rows($resultado);
             $linha = pg_fetch_array($resultado);
             $id= $linha['idvenda'];
+
             if($qtde>0){
                 $sql="SELECT Idcurso FROM itensvenda WHERE $id = ".$linha['idvenda'];
+                //$stmt = $conecta->prepare($sql);
+                //$stmt->bindValue(':idvenda', $idusuario);
+                //$stmt->execute();
                 $resultado= pg_query($conecta, $sql);
                 $qtde=pg_num_rows($resultado);
                 $linha = pg_fetch_array($resultado);

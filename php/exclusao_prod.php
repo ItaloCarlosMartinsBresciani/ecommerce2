@@ -3,11 +3,13 @@
     include "conexao.php";
 
   
-    $idcurso = $_POST['idcurso'];
+    $idcurso = strtolower(trim(filter_var($_POST['idcurso'], FILTER_SANITIZE_NUMBER_INT)));
     $data=date('d/m/Y'); 
 
-    $sql="UPDATE cursos set excluido = 'true' WHERE idcurso = $idcurso";
-    
+    $sql="UPDATE cursos set excluido = 'true' WHERE idcurso = :idcurso";
+        $stmt = $conecta->prepare($sql);
+        $stmt->bindValue(':idcurso', $idcurso);
+        $stmt->execute();
 
     $resultado=pg_query($conecta,$sql);
     $qtde=pg_affected_rows($resultado);

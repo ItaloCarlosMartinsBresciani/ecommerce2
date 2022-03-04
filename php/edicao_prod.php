@@ -18,8 +18,12 @@
 <?php
         include "conexao.php";
         //dados enviados do script altera_prod.php
-        $idcurso = $_GET["idcurso"];
-        $sql="SELECT * FROM cursos WHERE idcurso = $idcurso;";
+        $idcurso = strtolower(trim(filter_var($_GET['idcurso'], FILTER_SANITIZE_NUMBER_INT)));
+
+        $sql="SELECT * FROM cursos WHERE idcurso = :idcurso;";
+        $stmt = $conecta->prepare($sql);
+        $stmt->bindValue(':idcurso', $idcurso);
+        $stmt->execute();
         $resultado=pg_query($conecta,$sql);
         $qtde=pg_num_rows($resultado);
         if ( $qtde == 0 ){

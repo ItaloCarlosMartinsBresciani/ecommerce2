@@ -82,19 +82,28 @@
             {
                 case 1: $x="%$pesquisa%"; 
                 $sql="select * from cursos
-                where lower(nomecurso) like '$x' and excluido != 'true'
+                where lower(nomecurso) like :x and excluido != 'true'
                 order by nomecurso";
+                $stmt = $conecta->prepare($sql);
+                $stmt->bindValue(':x', $x);
+                $stmt->execute();
                 break; 
 
                 case 2: $cod="$pesquisa"; 
-                $sql="select * from cursos where preco = '$cod' 
+                $sql="select * from cursos where preco = :cod 
                 and excluido != 'true' order by preco";
+                $stmt = $conecta->prepare($sql);
+                $stmt->bindValue(':cod', $cod);
+                $stmt->execute();
                 break; 
 
                 case 3: $x="%$pesquisa%"; 
                 $sql="select * from cursos
-                where lower(genero) like '$x' and excluido != 'true'
+                where lower(genero) like :x and excluido != 'true'
                 order by genero";
+                $stmt = $conecta->prepare($sql);
+                $stmt->bindValue(':x', $x);
+                $stmt->execute();
                 break; 
                 
             }
