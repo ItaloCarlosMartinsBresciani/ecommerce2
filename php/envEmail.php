@@ -45,6 +45,39 @@ session_start();
 
             //Set who the message is to be sent to
 
+//
+    require ("conexao.php");
+    $sql="SELECT nome, email FROM usuarios WHERE idusuario = ".$_SESSION["idusuario"];
+    $stmt = $conecta->prepare($sql);
+    $stmt->execute();
+    $retorno = $stmt -> fetchAll(PDO::FETCH_ASSOC)
+    if ($retorno)
+    {
+        foreach ($retorno as $linha)
+        {
+            $sql = "SELECT NomeCurso, Img, preco FROM cursos WHERE idCurso=$idCurso AND excluido IS FALSE ORDER BY idCurso";
+                    $res = pg_query($conecta, $sql);
+                    $linha = pg_fetch_array($res);
+    
+                    $preco = $linha['preco'];
+                    $nome = $linha['nomecurso'];
+                    $Img = $linha['Img'];
+                    
+                    $tabela = $tabela."
+                    <tr>
+                        <td>".$nome."</td>
+                        <td>".$descricao."</td>
+                        <td>".$preco."</td>
+                    </tr>";
+                            
+        }
+    } else
+    {
+        echo "Erro!";
+    }
+//  
+            
+
             require("../conexao.php");
                 
 

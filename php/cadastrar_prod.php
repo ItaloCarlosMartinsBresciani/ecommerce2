@@ -2,8 +2,7 @@
     session_start();
     include "conexao.php";
 
-    
-    
+        
     $nomecurso=$_POST["nomecurso"];
     $preco=$_POST["preco"];
     $aulas=$_POST["aulas"];
@@ -11,8 +10,30 @@
     $criador=$_POST["criador"];
     $img=$_POST["img"];
     $imagem=$_POST["imagem"];
-    
+//
+    require ("conexao.php");
     $sql = "SELECT nomecurso FROM cursos WHERE nomecurso = '$nomecurso';";
+    $stmt = $conecta->prepare($sql);
+    $stmt->execute();
+    $retorno = $stmt -> fetchAll(PDO::FETCH_ASSOC)
+    if ($retorno)
+    {
+        foreach ($retorno as $linha)
+        {
+            $_SESSION['curso_existe'] = true;
+            echo "
+            <script>
+            alert('Esse nome já está em uso, redigite!');
+            </script>";
+            echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=cadastro_prod.html'>";
+            exit;
+            
+        }
+    } else
+    {
+        echo "Erro!";
+    }
+//    
     
     $result = pg_query($conecta, $sql);
     $row = pg_num_rows($result);

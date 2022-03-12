@@ -19,7 +19,7 @@
         $idcurso = strtolower(trim(filter_var($_GET['idcurso'], FILTER_SANITIZE_NUMBER_INT)));
 
         $sql="SELECT * FROM cursos WHERE idcurso = :idcurso;";
-        $stmt = $conecta->prepare($sql);
+        $stmt = $conecta->prepare($sql); //
         $stmt->bindValue(':idcurso', $idcurso);
         $stmt->execute();
 

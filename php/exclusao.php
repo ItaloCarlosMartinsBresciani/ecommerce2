@@ -8,7 +8,7 @@
 
     $sql="UPDATE usuarios set excluido = 'true' WHERE idusuario = :idusuario";
 
-        $stmt = $conecta->prepare($sql);
+        $stmt = $conecta->prepare($sql); //
         $stmt->bindValue(':idusuario', $idusuario);
         $stmt->execute();
 

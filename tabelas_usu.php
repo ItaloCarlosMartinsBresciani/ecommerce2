@@ -18,12 +18,9 @@
         <h1>Tabela de usuários <i class="fas fa-table"></i></h1><br>
 
         <div style="text-align: left; float: left;"><a href="index.php"><i class="fas fa-arrow-circle-left"></i> Voltar</a></div> 
-        <div style="text-align: right;"> <a href="tabelas_prod.php">Tabelas de Produtos <i class="fas fa-arrow-circle-right"></i></a> </div>
-    
-        
-        
-        
+        <div style="text-align: right;"> <a href="tabelas_prod.php">Tabelas de Produtos <i class="fas fa-arrow-circle-right"></i></a> </div>        
     </header>
+    
     <?php
             include "php/conexao.php";
             

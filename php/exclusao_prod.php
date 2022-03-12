@@ -7,7 +7,7 @@
     $data=date('d/m/Y'); 
 
     $sql="UPDATE cursos set excluido = 'true' WHERE idcurso = :idcurso";
-        $stmt = $conecta->prepare($sql);
+        $stmt = $conecta->prepare($sql); //
         $stmt->bindValue(':idcurso', $idcurso);
         $stmt->execute();
 

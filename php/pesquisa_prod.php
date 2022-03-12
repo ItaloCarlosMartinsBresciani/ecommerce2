@@ -19,9 +19,7 @@
 
         <div style="text-align: left; float: left;"><a href="../tabelas_prod.php"><i class="fas fa-arrow-circle-left"></i> Voltar</a></div> 
         
-    <br><br>
-        
-        
+    <br><br>  
         
     </header>
     <div style="text-align: left; float: left;"><h1> Resultado(s) da pesquisa </h1></div><br><br>

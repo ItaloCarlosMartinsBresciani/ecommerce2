@@ -32,7 +32,7 @@
                     if($adm){
                         echo "<a href='tabelas_prod.php'><i class='fas fa-cogs'></i></a>";
                          }
-                ?>
+        ?>
         <a class="um" href="index.php">Home <i class="fas fa-home"></i></a>&nbsp;&nbsp;
         <a class="um" href="produtos.php">Produtos <i class="fas fa-desktop"></i></a>&nbsp;&nbsp;
         <?php

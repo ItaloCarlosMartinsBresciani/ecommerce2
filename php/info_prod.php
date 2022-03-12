@@ -16,6 +16,7 @@
 <body>
 
   <?php
+  /*
         session_start();
         include "conexao.php";
         
@@ -28,6 +29,25 @@
             exit;
         }
         $linha = pg_fetch_array($resultado);
+        */
+
+//
+    require ("conexao.php");
+    $sql="SELECT * FROM cursos WHERE idcurso = $idcurso;";
+    $stmt = $conecta->prepare($sql);
+    $stmt->execute();
+    $retorno = $stmt -> fetchAll(PDO::FETCH_ASSOC)
+    if ($retorno)
+    {
+        foreach ($retorno as $linha)
+        {
+           
+        }
+    } else
+    {
+        echo "Erro!";
+    }
+//    
     ?>
     
     <div id="login-container">

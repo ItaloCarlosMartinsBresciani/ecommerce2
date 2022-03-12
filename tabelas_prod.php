@@ -42,10 +42,28 @@
             
 
             
-            
+            /*
             $sql="SELECT * FROM cursos WHERE excluido ='false' ORDER BY idcurso";
             $resultado= pg_query($conecta, $sql);
             $qtde=pg_num_rows($resultado);
+            */
+//
+    require ("conexao.php");
+    $sql="SELECT * FROM cursos WHERE excluido ='false' ORDER BY idcurso";
+    $stmt = $conecta->prepare($sql);
+    $stmt->execute();
+    $retorno = $stmt -> fetchAll(PDO::FETCH_ASSOC)
+    if ($retorno)
+    {
+        foreach ($retorno as $linha)
+        {
+         
+        }
+    } else
+    {
+        echo "Erro!";
+    }
+//    
 
             echo "<br><br><br><br><br><br><br><br><br><table class='content-table'>
             <thead>

@@ -46,7 +46,7 @@
         $idusuario = strtolower(trim(filter_var($_SESSION['idusuario'], FILTER_SANITIZE_NUMBER_INT)));
         
         $sql="SELECT * FROM usuarios WHERE excluido ='false' and idusuario = :idusuario;";
-        $stmt = $conecta->prepare($sql);
+        $stmt = $conecta->prepare($sql);//
         $stmt->bindValue(':idusuario', $idusuario);
         $stmt->execute();
         $resultado= pg_query($conecta, $sql);

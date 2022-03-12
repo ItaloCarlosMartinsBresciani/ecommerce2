@@ -9,12 +9,27 @@
         header('Location: ../login.php?error=invalid');
         exit;
     }
-
+    
+//
+    require ("conexao.php");
     $sql="SELECT senha, adm, idusuario FROM usuarios WHERE excluido = 'false' and email = :email";
     $stmt = $conecta->prepare($sql);
-    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
-    
+    $retorno = $stmt -> fetchAll(PDO::FETCH_ASSOC)
+    if ($retorno)
+    {
+        foreach ($retorno as $linha)
+        {
+            $_SESSION["logou"] = 'S';
+            $_SESSION['adm'] = $resultado['adm'];
+            $_SESSION['idusuario'] = $resultado['idusuario'];
+        }
+    } else
+    {
+        echo "Erro!";
+    }
+//
+
     if($stmt && $stmt->rowCount() > 0) {
 
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);

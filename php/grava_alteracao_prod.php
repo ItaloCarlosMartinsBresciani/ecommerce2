@@ -10,7 +10,15 @@
     $img=$_POST["img"];
     $imagem=$_POST["imagem"];
     
-    $sql="UPDATE cursos SET idcurso = $idcurso, nomecurso = '$nomecurso', preco = '$preco', aulas = '$aulas', genero = '$genero', criador = '$criador', img = '$img', imagem = '$imagem' WHERE idcurso = $idcurso;";
+   // $sql="UPDATE cursos SET idcurso = $idcurso, nomecurso = '$nomecurso', preco = '$preco', aulas = '$aulas', genero = '$genero', criador = '$criador', img = '$img', imagem = '$imagem' WHERE idcurso = $idcurso;";
+
+//
+require ("conexao.php");
+$sql="UPDATE cursos SET idcurso = $idcurso, nomecurso = '$nomecurso', preco = '$preco', aulas = '$aulas', genero = '$genero', criador = '$criador', img = '$img', imagem = '$imagem' WHERE idcurso = $idcurso;";
+$stmt = $conecta->prepare($sql);
+$stmt->execute();
+//
+
 
     $resultado=pg_query($conecta,$sql);
     $qtde=pg_affected_rows($resultado);
